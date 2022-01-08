@@ -94,17 +94,17 @@ Create Shell Script:
 
 Filters are shell commands or programs, which: take their input from standard input, normally the keyboard, and return their output to standard output, which is normally the terminal. We can think of a filter as a transformer, a program that transforms input data into output data. There are many examples, including, 
 
--- wc
--- cat
--- more
--- head
--- sort
--- grep etc.
+   - c
+   - cat
+   - more
+   - head
+   - sort
+   - grep etc.
 
 Pipe commands allows you to chain together sequence of filter commands.
 
-'''
+```
 Command 1 | Command 2 
-'''
+```
 
-Output of command 1 becomes the input of the command 2 and so on.
+> Output of command 1 becomes the input of the command 2 and so on.
