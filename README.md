@@ -2,6 +2,19 @@
 
 This is my lecture notes on Hands-on Introduction to Linux Commands and Shell Scripting course offered by IBM-Coursera.
 
+- [Coursera-Hands-on-Introduction-to-Linux-Commands-and-Shell-Scripting](#coursera-hands-on-introduction-to-linux-commands-and-shell-scripting)
+- [Introduction](#introduction)
+  * [Common Linux/Unix Shell Commands](#common-linux-unix-shell-commands)
+  * [Running Linux on a Windows Machine](#running-linux-on-a-windows-machine)
+- [Shell Scripting Basics](#shell-scripting-basics)
+  * [Interactive vs Traditional Programming](#interactive-vs-traditional-programming)
+  * [Scripting vs Programming Languages](#scripting-vs-programming-languages)
+  * [Shell Script](#shell-script)
+  * [Interpreter Directive (shebang)](#interpreter-directive--shebang-)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
+
 # Introduction
 
 A shell is a powerful user interface for Unix-like operating systems. It is an interactive scripting language.
@@ -50,4 +63,15 @@ Basically, all scripting languages are programming languages. The theoretical di
 A shell script is an executable text file in which the first line usually has the form of an interpreter directive. The interpreter directive is also known as a ‘shebang’ directive, and has the following form: 'pound, bang, interpreter' plus an optional argument. 
 Interpreter is an absolute path to an executable program, and the optional argument is a string representing a single argument.
 Shell scripts are scripts that invoke a shell program.
+
+## Interpreter Directive (shebang)
+
+Invoking Interpreters:
+
+
+|     #!bin/sh                   |     Invokes Bourne Shell          |   |   |   |
+|--------------------------------|-----------------------------------|---|---|---|
+|     #!bin/bash                 |     Invokes Bash Shell            |   |   |   |
+|     #!usr/bin/env   python3    |     Invokes Python Interpreter    |   |   |   |
+|                                |                                   |   |   |   |
 
