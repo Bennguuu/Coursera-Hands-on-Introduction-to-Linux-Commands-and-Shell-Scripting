@@ -2,7 +2,6 @@
 
 This is my lecture notes on Hands-on Introduction to Linux Commands and Shell Scripting course offered by IBM-Coursera.
 
-- [Coursera-Hands-on-Introduction-to-Linux-Commands-and-Shell-Scripting](#coursera-hands-on-introduction-to-linux-commands-and-shell-scripting)
 - [Introduction](#introduction)
   * [Common Linux/Unix Shell Commands](#common-linux-unix-shell-commands)
   * [Running Linux on a Windows Machine](#running-linux-on-a-windows-machine)
@@ -23,15 +22,6 @@ This is my lecture notes on Hands-on Introduction to Linux Commands and Shell Sc
 
 
 # Introduction
-
-```diff
-- A shell is a powerful user interface for Unix-like operating systems. It is an interactive scripting language.
-+ text in green
-! text in orange
-# text in gray
-@@ text in purple (and bold)@@
-```
-<p style='color:red'>This is some red text.</p>
 
 A shell is a powerful user interface for Unix-like operating systems. It is an interactive scripting language.
 - It can interpret commands and run other programs. 
