@@ -2,7 +2,7 @@
 
 This is my lecture notes on Hands-on Introduction to Linux Commands and Shell Scripting course offered by IBM-Coursera.
 
-#Introduction
+# Introduction
 
 A shell is a powerful user interface for Unix-like operating systems. It is an interactive scripting language.
 -It can interpret commands and run other programs. 
