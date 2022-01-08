@@ -11,8 +11,15 @@ This is my lecture notes on Hands-on Introduction to Linux Commands and Shell Sc
   * [Scripting vs Programming Languages](#scripting-vs-programming-languages)
   * [Shell Script](#shell-script)
   * [Interpreter Directive (shebang)](#interpreter-directive--shebang-)
-
-<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+- [Filter, Pipes and Variables](#filter--pipes-and-variables)
+- [Useful Features of the Bash Shell](#useful-features-of-the-bash-shell)
+  * [Metacharacters](#metacharacters)
+  * [Quoting](#quoting)
+  * [I/O Redirection](#i-o-redirection)
+  * [Command Substitution](#command-substitution)
+  * [Command Line Arguments](#command-line-arguments)
+  * [Batch vs. Concurrent Modes of Execution](#batch-vs-concurrent-modes-of-execution)
+- [Scheduling Jobs Using Cron](#scheduling-jobs-using-cron)
 
 
 # Introduction
@@ -94,12 +101,12 @@ Create Shell Script:
 
 Filters are shell commands or programs, which: take their input from standard input, normally the keyboard, and return their output to standard output, which is normally the terminal. We can think of a filter as a transformer, a program that transforms input data into output data. There are many examples, including, 
 
-   - c
-   - cat
-   - more
-   - head
-   - sort
-   - grep etc.
+ - c
+ - cat
+ - more
+ - head
+ - sort
+ - grep etc.
 
 Pipe commands allows you to chain together sequence of filter commands.
 
@@ -108,3 +115,161 @@ Command 1 | Command 2
 ```
 
 > Output of command 1 becomes the input of the command 2 and so on.
+
+Create, See Content and Delete of Shell Variable:
+
+| Command                  	| Notes                           	|
+|--------------------------	|---------------------------------	|
+|     GREETINGS=”Hello”    	|     Create a shell variable     	|
+|     echo   $GREETINGS    	|     See its content             	|
+|     unset   GREETINGS    	|     Delete Shell variable       	|
+|     set                  	|     List all Shell variables    	|
+
+
+Environmental variables are just like shell variables, except they have extended scope: They persist in any child processes spawned by the shell in which they originate. You can extend any shell variable to an environment variable by applying the ‘export’ command to it.
+
+Environmental Variable:
+
+| Command                   	| Notes                                                    	|
+|---------------------------	|----------------------------------------------------------	|
+|     export   GREETINGS    	|     Extend Shell variable to   Environmental variable    	|
+|     env                   	|     List all Environment Variables                       	|
+|     export GREETINGS      	|     Extend GREETINGS                                     	|
+|     env \| grep “GRE”     	|     Check if it is extended                              	|
+
+# Useful Features of the Bash Shell
+
+- Metacharacters
+- Quoting
+- I/O redirection
+- Command substitution
+- Command line arguments
+- Batch vs. concurrent modes of execution
+
+## Metacharacters
+
+Common Metacharacters:
+
+| Command  	| Notes                                                    	|
+|----------	|----------------------------------------------------------	|
+|     #    	|     Precedes a comment                                   	|
+|     ;    	|     Command separator                                    	|
+|     *    	|     Filename expansion wildcard                          	|
+|     ?    	|     Single character   wildcard in filename expansion    	|
+
+## Quoting
+
+It is used to interpret or escape metacharacter meaning.
+
+| Command    	| Notes                                                   	|
+|------------	|---------------------------------------------------------	|
+|     \      	|     Escape special character   interpretation           	|
+|     “ “    	|     Interpret literally, but evaluate metacharacters    	|
+|     ‘ ‘    	|     Interpret literally                                 	|
+
+Backslash removes the meaning of the special character that follows it.
+A pair of single quotes removes special meanings of all special characters within them (except another single quote).
+A pair of double quotes removes special meanings of all special characters within them except another double quote, variable substitution and command substitution.
+
+
+```
+echo "Current user name: $USERNAME"
+>> Current user name: Bengü Atıcı
+
+echo ’Current user name: $USERNAME’
+>> Current user name: $USERNAME
+
+```
+
+## I/O Redirection
+
+Linux sends the output of a command to standard output (display) and any error generated is sent to standard error (display).
+Similarly, the input required by a command is received from standard input (keyboard).
+If we need to change these defaults, shell provides a feature called I/O Redirection.
+When you redirect using > the contents of the target file are overwritten if the file already exists.
+
+| Command    	| Notes                                                               	|
+|------------	|---------------------------------------------------------------------	|
+|     >      	|     Redirect output to file (Output   redirection)                  	|
+|     >>     	|     Append output to file                                           	|
+|     2>     	|     Redirect standard error to file                                 	|
+|     2>>    	|     Append standard error to file                                   	|
+|     <      	|     Redirect file contents to standard input (Input redirection)    	|
+
+
+Append Output to File:
+
+
+| Command                                	| Notes                                             	|
+|----------------------------------------	|---------------------------------------------------	|
+|     echo “Some   text” > test.txt      	|     Create test.txt file and append   the text    	|
+|     date >>   test.txt                 	|     Append date to test.txt                       	|
+|     cat bengu.txt                      	|     Check out the content of test.txt             	|
+|     tr   "[a-z]" "[A-Z]" < test.txt    	|     Display the content in all uppercase          	|
+
+
+## Command Substitution
+
+Command substitution is a feature of the shell, which helps save the output generated by a command in a variable.
+It can also be used to nest multiple commands , so that the innermost command's output can be used by outer commands.
+The inner command is enclosed in $() and will execute first.
+Command substitution replace command with its output. 
+
+```
+
+$(command) or ‘command’
+
+```
+
+Create Variable and Assign Its Value as pwd:
+
+
+| Command            	| Notes                  	|
+|--------------------	|------------------------	|
+|     here=$(pwd)    	|     Create variable    	|
+|     echo $here     	|     Print its value    	|
+
+## Command Line Arguments
+
+Command line arguments are arguments used by a program that are specified on the command line. In particular, they provide a way to pass arguments to a shell script, which is itself a program.
+
+## Batch vs. Concurrent Modes of Execution
+
+In batch mode, commands run sequentially. 
+
+Command 1 ; Command 2
+
+In concurrent mode, commands run parallel.
+
+Command 1 & Command 2
+
+# Scheduling Jobs Using Cron
+
+- Schedule cron jobs with crontab
+- Understand the cron syntax
+- View and remove cron jobs
+
+The cron utility on Linux and Unix-like operating systems allows you to schedule certain jobs to run automatically at certain times.
+
+- Cron is the general name of the tool that runs scheduled jobs consisting of shell commands or shell scripts.
+- Crond is the service that interprets “crontab files” every minute and submits the corresponding jobs to cron at scheduled times. 
+- A crontab, short for “cron table,” is a file containing jobs and schedule data. Crontab is also a command that invokes a text editor to allow you to edit a crontab file.
+
+In Windows, there is Task Scheduler to schedule jobs.
+
+```
+(minute – hour - day of month – month - day of week)
+```
+
+All five positions must have either a numeric entry or an asterisk, which is a wildcard (*) symbol that means any. Extra spaces are ignored. You can use as many spaces as between positions you want.
+
+Schedule cron Jobs with crontab:
+
+| Command                                         	| Notes                                                              	|
+|-------------------------------------------------	|--------------------------------------------------------------------	|
+|     crontab -e                                  	|     Opens editor                                                   	|
+|     0 2 * * 0   /cron_scripts/backup_data.sh    	|     Runs “backup” data shell script   to run at 2 AM on Sundays    	|
+
+
+To save the job, first type “control x” to exit the editor, and then enter “y” to save your changes. The jobs are now in production! Running crontab with the “l” option returns a list of all cron jobs and their schedules. To remove a job,   simply invoke the crontab editor, delete the corresponding line in the crontab file, and save the changes.
+
