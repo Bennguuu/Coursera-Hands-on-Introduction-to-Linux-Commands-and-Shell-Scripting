@@ -68,10 +68,43 @@ Shell scripts are scripts that invoke a shell program.
 
 Invoking Interpreters:
 
+| Command                        	| Notes                             	|
+|--------------------------------	|-----------------------------------	|
+|     #!bin/sh                   	|     Invokes Bourne Shell          	|
+|     #!bin/bash                 	|     Invokes Bash Shell            	|
+|     #!usr/bin/env   python3    	|     Invokes Python Interpreter    	|
 
-|     #!bin/sh                   |     Invokes Bourne Shell          |   |   |   |
-|--------------------------------|-----------------------------------|---|---|---|
-|     #!bin/bash                 |     Invokes Bash Shell            |   |   |   |
-|     #!usr/bin/env   python3    |     Invokes Python Interpreter    |   |   |   |
-|                                |                                   |   |   |   |
 
+Create Shell Script:
+
+| Command                                       	| Notes                                             	|
+|-----------------------------------------------	|---------------------------------------------------	|
+|     touch   hello_world.sh                    	|     Create empty text file                        	|
+|     echo   ‘#!/bin/bash’ >> hello_world.sh    	|     Turn text file into bash script by shebang    	|
+|     echo ‘Hello   World’ >> hello_world.sh    	|     Redirect Hello World output to Bash script    	|
+|     ls –l   hello_world.sh                    	|     Check if the file is executable               	|
+|     chmod +x   hello_world.sh                 	|     Make it executable                            	|
+|     ./hello_world.sh                          	|     Run the Bash script                           	|
+
+# Filter, Pipes and Variables
+
+- Describe and use pipes and filters
+- Explain and set shell and environment variables
+
+
+Filters are shell commands or programs, which: take their input from standard input, normally the keyboard, and return their output to standard output, which is normally the terminal. We can think of a filter as a transformer, a program that transforms input data into output data. There are many examples, including, 
+
+-- wc
+-- cat
+-- more
+-- head
+-- sort
+-- grep etc.
+
+Pipe commands allows you to chain together sequence of filter commands.
+
+'''
+Command 1 | Command 2 
+'''
+
+Output of command 1 becomes the input of the command 2 and so on.
